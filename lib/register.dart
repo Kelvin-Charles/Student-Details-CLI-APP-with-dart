@@ -20,10 +20,14 @@ Future register() async {
   var username = stdin.readLineSync();
 
   stdout.write("====4. Enter your password: ");
+  stdin.echoMode = false;
   var password = stdin.readLineSync().hashCode;
+  stdin.echoMode = true;
 
   stdout.write("====5. Enter your password to verify: ");
+  stdin.echoMode = false;
   var verPassword = stdin.readLineSync().hashCode;
+  stdin.echoMode = true;
   var pasword;
   if (password == verPassword) {
     pasword = verPassword;
