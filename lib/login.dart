@@ -12,6 +12,7 @@ Future login() async {
   stdin.echoMode = false;
   var user_password = stdin.readLineSync();
   stdin.echoMode = true;
+  print("");
   var db_usernames = await conn.query("SELECT username FROM users");
   var userList = [];
   for (var user in db_usernames) {
