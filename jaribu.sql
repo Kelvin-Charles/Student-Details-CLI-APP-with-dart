@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 08, 2024 at 06:23 PM
+-- Generation Time: Aug 21, 2024 at 08:11 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,23 +30,27 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `f_name` varchar(20) NOT NULL,
   `l_name` varchar(20) NOT NULL,
+  `gender` enum('MALE','FEMALE') NOT NULL,
   `username` varchar(25) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` enum('mkuu','kawaida','registrar') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`f_name`, `l_name`, `username`, `password`) VALUES
-('Anna', 'Kurambe', 'ameku', '78781508'),
-('hunter', 'japhari', 'cityhunter', '12345'),
-('israel', 'alex', 'israelalex', '170066622'),
-('joshua', 'kadoshi', 'kadoshijoshua', '156570499'),
-('kensia', 'john', 'kensiajohn', '699981744'),
-('Laurine', 'Charles', 'laura', '691554663'),
-('petro', 'lukuba', 'lukubamasanja', '227238406'),
-('Mwampoko', 'Mwenda', 'mimi', '11281726353');
+INSERT INTO `users` (`f_name`, `l_name`, `gender`, `username`, `password`, `role`) VALUES
+('Anna', 'Kurambe', 'FEMALE', 'ameku', '78781508', 'kawaida'),
+('kaka', 'yangu', 'MALE', 'bro', '547548988', 'registrar'),
+('hunter', 'japhari', 'MALE', 'cityhunter', '12345', 'kawaida'),
+('israel', 'alex', 'MALE', 'israelalex', '170066622', 'kawaida'),
+('Kylian', 'Mbappe', 'MALE', 'jini', '691359889', 'mkuu'),
+('joshua', 'kadoshi', 'MALE', 'kadoshijoshua', '156570499', 'kawaida'),
+('kensia', 'john', 'FEMALE', 'kensiajohn', '699981744', 'registrar'),
+('Laurine', 'Charles', 'FEMALE', 'laura', '691554663', 'registrar'),
+('petro', 'lukuba', 'MALE', 'lukubamasanja', '227238406', 'mkuu'),
+('Mwampoko', 'Mwenda', 'MALE', 'mimi', '11281726353', 'mkuu');
 
 --
 -- Indexes for dumped tables
