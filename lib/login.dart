@@ -36,6 +36,7 @@ Future login() async {
     var realPassword = db_password.toList()[0][0];
     if (realPassword.toString() == user_password.hashCode.toString()) {
       print("welcome ${names[0]} ${names[1]}");
+      await conn.close();
     }
   } else {
     print("incorrect password or username");
