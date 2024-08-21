@@ -4,7 +4,7 @@ import 'login.dart';
 
 import 'dbConnection.dart';
 
-Future register() async {
+Future userRegister() async {
   var conn = await dbConnect();
   print("=====WELCOME TO OUR REGISTRATION =====");
 
@@ -15,6 +15,17 @@ Future register() async {
 
   stdout.write("====2. Enter your lName name: ");
   var lName = stdin.readLineSync();
+  print("===== Select Your Gender =====");
+  print("===== 1. Male            ======");
+  print("===== 2. Female          =====");
+  stdout.write("press (1) for Male or  (2) for Female: ");
+  var user_gender = stdin.readLineSync();
+  var gender;
+  if (user_gender == "1")  {
+    gender = "MALE";
+  } else if (user_gender == "2") {
+    gender = "FEMALE";
+  }
 
   stdout.write("====3. Enter your username: ");
   var username = stdin.readLineSync();
@@ -23,18 +34,24 @@ Future register() async {
   stdin.echoMode = false;
   var password = stdin.readLineSync().hashCode;
   stdin.echoMode = true;
- print("");
+  print("");
   stdout.write("====5. Enter your password to verify: ");
   stdin.echoMode = false;
   var verPassword = stdin.readLineSync().hashCode;
   stdin.echoMode = true;
   print("");
+  var urole = "kawaida";
   var pasword;
   if (password == verPassword) {
     pasword = verPassword;
+    var user_data_insert = await conn.query(
+      'insert into users values(?,?,?,?,?,?)',
+      [fName, lName, gender, username, pasword, urole]);
+  await conn.close();
     print("Thank you for using our registration menu");
     print("=====You are successfuly registered=====");
-    print("#                                      #");
+    print(" ______________________________________ ");
+    print("#______________________________________#");
     print("You Want to login...?: ");
     print("1. Yes");
     print("2. No");
@@ -47,9 +64,8 @@ Future register() async {
       exit(0);
     }
   } else {
-    print("Password did not match try again");
+    print("Password did not match try again later");
+    exit(0);
   }
-  var user_data_insert = await conn.query(
-      'insert into users values(?,?,?,?)', [fName, lName, username, pasword]);
-  await conn.close();
+  
 }
